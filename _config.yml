@@ -18,11 +18,11 @@ viewsourceroot: https://github.com/duyn/duyn.github.io/blob/master/
 newsourceroot: https://github.com/duyn/duyn.github.io/new/master
 #########################################
 # for duoshuo.com commenting system, uncomment following line if you do not want to include duoshuo.com. 
-#duoshuo_shortname: duyn
-#duoshuo_url: "http://duyn.github.io"
+duoshuo_shortname: duyn
+duoshuo_url: "http://duyn.github.io"
 # disqus.com commenting system. please note that it is exclusive with duoshuo.com
-disqus_shortname: duyn
-disqus_url: "https://duyn.github.io"
+#disqus_shortname: duyn
+#disqus_url: "https://duyn.github.io"
 #########################################
 
 # Build settings

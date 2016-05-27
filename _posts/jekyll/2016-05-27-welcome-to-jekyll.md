@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "hello jekyll!"
-date:   2016-05-27 21:49:54
+date:   2016-05-26 21:49:54
 categories: jekyll
 comments: true
 ---
@@ -14,20 +14,26 @@ Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个�
 
 ### 怎么安装Jekyll
 OS: ubuntu 16.04 X86_64
-1. 先安装依赖的库
+
+- 安装依赖的库
+
 ```
 dyn@ubuntu:~$ sudo apt-get install ruby-dev rubygems nodejs
 ```
 注:如果没有安装Python，则需要单独安装。因ubuntu系统自带python，此处省略。
 
-2. 安装Jekyll
+- 安装Jekyll
+
 ```
 dyn@ubuntu:~$ sudo apt-get install jekyll
 ```
 
 ### 相关资料
 [Jekyll中文](http://jekyllcn.com/)
+
 [Jekyll英文](http://jekyllrb.com)
+
 [Jekyll’s GitHub repo](https://github.com/jekyll/jekyll)
+
 [Jekyll-help](https://github.com/jekyll/jekyll-help)
 

@@ -65,4 +65,4 @@ dyn@ubuntu:~/MyPython/HelloPySide$ python3 Hello.py
 ![HelloCode](http://duyn.github.io/png/Pyside_UseQtUI/HelloPySide.png)
 
 注:项目所有代码可到如下路径查看，欢迎批评指正:
-[HelloPySide](https://github.com/duyn/MyPython/tree/master/HelloPySide)
+[HelloPySide](https://github.com/duyn/MyCode/tree/master/Python/HelloPySide)

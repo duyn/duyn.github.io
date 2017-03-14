@@ -4,6 +4,7 @@ title:  "Linux终端显示Git分支名"
 date:   2017-02-28 22:49:54
 categories: git
 comments: true
+share: true
 ---
 
 * content

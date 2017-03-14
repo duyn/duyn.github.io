@@ -11,8 +11,6 @@ image:
 date:   2016-05-26 21:49:54
 ---
 
-介绍Jekyll及安装方法
-
 * content
 {:toc}
 

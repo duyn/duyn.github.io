@@ -6,6 +6,8 @@ categories: git
 comments: true
 ---
 
+linux下使用终端操作git时，显示分支名能更醒目、方便
+
 * content
 {:toc}
 

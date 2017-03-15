@@ -43,9 +43,23 @@
       </footer>
       <div class="entry-content">
         {{ content }}
-        {% if site.owner.duoshuo-shortname and page.comments or site.comments %}
-          <div id="duoshuo_thread"></div><!-- /#duoshuo_thread -->
-          {% include duoshuo-comments.html %}
+        {% if site.owner.duoshuo_shortname and page.comments or site.comments %}
+          <!-- duoshuo.com javascript include code. -->    
+            {% if site.owner.duoshuo_url %}
+              <div class="post-area post comment">
+                <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="{{ site.duoshuo_url }}{{ page.url }}"></div>
+              </div>
+              <script type="text/javascript">
+                var duoshuoQuery = {short_name:"{{ site.owner.duoshuo_shortname }}"};
+                (function() {
+                  var ds = document.createElement('script');
+                  ds.type = 'text/javascript';ds.async = true;
+                  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                  ds.charset = 'UTF-8';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+              </script>
+            {% endif %}
         {% endif %}
       </div><!-- /.entry-content -->
     </div><!-- /.entry-wrapper -->

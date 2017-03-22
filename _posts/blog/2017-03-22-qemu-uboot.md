@@ -13,7 +13,7 @@ date:   2017-03-22 23:49:54
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ## 安装交叉工具链
 

@@ -28,33 +28,33 @@ This section describes the functionality of the Bluetooth low energy protocol st
 
 *Effective Connection Interval = (Connection Interval) × (1 + [Slave Latency])，大部分的参数都是通过GAPRole Task来设置，只有个别参数是通过直接调用GAP的接口调用的。*
 
-##GAPRole Task##
+## GAPRole Task ##
 GAPRole Task是一个独立的任务，它独离于APP，处理大多数GAP层的功能。在初始化期，由APP来使能或配置这个任务。很多BLE Protocol Stack事件直接由GAPRole Task处理，不会传送给APP。APP可以向GAPRole Task注册回调函数，以便可以将事件通知给APP Task，并进行相关处理。
 
-GAP层有以下几个角色：
-**Broadcaster：** Advertiser 是非连接的状态
-**Observer：** 设备在扫描通告，还没有发起连接
-**Peripheral：** Advertiser已连接，在连接中作为Slave
+GAP层有以下几个角色：  
+**Broadcaster：** Advertiser 是非连接的状态  
+**Observer：** 设备在扫描通告，还没有发起连接  
+**Peripheral：** Advertiser已连接，在连接中作为Slave  
 **Central：** 设备扫描后发起连接，在连接中作为Master
 
-#Generic Attribute Profile (GATT)#
-正如GAP层处理大部分连接相关的功能，GATT层处理的是两个连接的设备之间数据交互的功能。数据是以存在设备内存中“特性”的形式来传递和保存的。站在GATT的角度看，两个设备连接之后，他们就会扮演以下两个角色中的一个：
-**GATT server：** 包含GATT client读或者写的数据的设备
-**GATT client：** 正在向GATT server写数据或从GATT server读数据的设备
+# Generic Attribute Profile (GATT) #
+正如GAP层处理大部分连接相关的功能，GATT层处理的是两个连接的设备之间数据交互的功能。数据是以存在设备内存中“特性”的形式来传递和保存的。站在GATT的角度看，两个设备连接之后，他们就会扮演以下两个角色中的一个：  
+**GATT server：** 包含GATT client读或者写的数据的设备  
+**GATT client：** 正在向GATT server写数据或从GATT server读数据的设备  
 GATT的角色和GAP的角色是相互独立的。
 
-##GATT Characteristics and Attributes##
-属性是实际上设备之间传输的信息，Characteristics就是将数据、属性和配置等信息组合起来使用。一个典型的Characteristics包含以下几个属性：
-**Characteristic Value:** data value of the characteristic 
-**Characteristic Declaration:** 描述了存储的属性、位置和数据类型
-**Client Characteristic Configuration:** GATT server可以配置异步发送消息带或不带ack。
-**Characteristic User Description:** 一段描述Characteristic的字符串
-这些属性都是存在server的一个属性表中的，每个属性除了value外，还包括Handle（表的索引，用户不可设置）、Type、Permissions。
+## GATT Characteristics and Attributes ##
+属性是实际上设备之间传输的信息，Characteristics就是将数据、属性和配置等信息组合起来使用。一个典型的Characteristics包含以下几个属性：  
+**Characteristic Value:** data value of the characteristic  
+**Characteristic Declaration:** 描述了存储的属性、位置和数据类型  
+**Client Characteristic Configuration:** GATT server可以配置异步发送消息带或不带ack。  
+**Characteristic User Description:** 一段描述Characteristic的字符串  
+这些属性都是存在server的一个属性表中的，每个属性除了value外，还包括Handle（表的索引，用户不可设置）、Type、Permissions。  
 
-##GATT Services and Profile##
+## GATT Services and Profile ##
 A GATT service 是 characteristics 的集合，多个 services 组成了 a profile. 多个 profiles 只能实现 one service。
 
-##GAP GATT Service(GGS)##
+## GAP GATT Service(GGS) ##
 包含以下Characteristics
 – Device name
 – Appearance
@@ -62,27 +62,27 @@ A GATT service 是 characteristics 的集合，多个 services 组成了 a profi
 
 GGS 对于BLE设备来说，可以实现central 或 peripheral角色，多角色的设备要实现这些角色中的一个也需要GGS。GGS在设备发现和连接发起的过程中起来协助的作用。
 
-##Generic Attribute Profile Service##
+## Generic Attribute Profile Service ##
 
-##GATT Client Abstraction##
+## GATT Client Abstraction ##
 GATT层也是抽象的，具体的抽象取决于GATT的角色是Client还是Server，GATT层是ATT层的抽象。
 
-##GATT Server Abstraction##
+## GATT Server Abstraction ##
 作为GATT Server，大部分GATT的功能都是通过GATT profiles来处理的，而GATT profiles要使用GattServApp（配置和管理属性表的模块）
 
 GATTServApp存储和管理APP相关的属性表，Profiles通过这个模块添加Characteristic到属性表中,BLE Stack用这个模块响应来自GATT Client的发现请求。
 在上电或者重启的时候，APP会通过GATTServApp构建属性表，每个服务都包含一系统的属性(UUIDs, values, permissions, and read and write call-backs)。
 
-##Profile Architecture##
+## Profile Architecture ##
 + **Attribute Table Definition**
 GATT属性表要定义成固定大小，然后传递给GATT。
 + **Add Service Function**
 + **Register Application Callback Function**
 
-##GATT Security##
+## GATT Security ##
 GATT Server可以为每个Characteristic定义单独的权限。
 ### Authentication ###
 需要认证的Characteristics只能被通过配对认证的Client访问，这个校验只需要在协议栈内执行，不需要APP处理。
 
-###Authorization###
+### Authorization ###
 授权是可由APP自己定义的安全层，协议栈会将读、写请求发送给应用层，需要注册一个authorization回调函数。这个回调函数会协议栈的上下文执行，因此这个函数不能执行太复杂的操作。如果授权通过，可以访问则返回SUCCESS，如果还没有获得适当的授权则返回ATT_ERR_INSUFFICIENT_AUTHOR。
